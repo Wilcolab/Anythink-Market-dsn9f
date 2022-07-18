@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../imgs/topbar_logo.png";
+import placeholder from "../imgs/placeholder.png";
 
 const LoggedOutView = (props) => {
   if (!props.currentUser) {
@@ -25,6 +26,7 @@ const LoggedOutView = (props) => {
 
 const LoggedInView = (props) => {
   if (props.currentUser) {
+    props.currentUser.image = props.currentUser.image || placeholder;
     return (
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
