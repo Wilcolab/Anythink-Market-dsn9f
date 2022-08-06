@@ -2,7 +2,7 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 
 async function init() {
-    // console.log('process.env.MONGODB_URI', process.env.MONGODB_URI);
+    console.log('process.env.MONGODB_URI', process.env.MONGODB_URI);
     await mongoose.connect(process.env.MONGODB_URI);
     require("../models/User");
     require("../models/Item");
@@ -37,7 +37,7 @@ async function generateUsers() {
         user.email = email;
         const password = `user${id}_test_pass`;
         user.setPassword(password);
-        // console.log("user", JSON.stringify(user)); 
+        console.log("user", JSON.stringify(user)); 
         try {
             await user.save();
         } catch (e) {
@@ -68,7 +68,7 @@ async function generateProducts() {
         };
         const item = new Item(payload);
         item.seller = await User.findOne({}).exec();
-        // console.log('item', JSON.stringify(item));
+        console.log('item', JSON.stringify(item));
 
         try {
             await item.save();
@@ -91,7 +91,7 @@ async function generateComments() {
         const comment = new Comment({ body });
         comment.item = await Item.findOne();
         comment.seller = await User.findOne({}).exec();
-        // console.log('comment', JSON.stringify(comment));
+        console.log('comment', JSON.stringify(comment));
         try {
             await comment.save();
         } catch(e) {
