@@ -2,7 +2,7 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 
 async function init() {
-    console.log('process.env.MONGODB_URI', process.env.MONGODB_URI);
+    // console.log('process.env.MONGODB_URI', process.env.MONGODB_URI);
     await mongoose.connect(process.env.MONGODB_URI);
     require("../models/User");
     require("../models/Item");
@@ -27,6 +27,7 @@ function createUUID() {
 async function generateUsers() {
     await init();
     const User = await mongoose.model('User');
+    const users = [];
     for (let i = 0; i < 100; i++) {
         const user = new User();
 
@@ -37,16 +38,10 @@ async function generateUsers() {
         user.email = email;
         const password = `user${id}_test_pass`;
         user.setPassword(password);
-        console.log("user", JSON.stringify(user)); 
-        try {
-            await user.save();
-        } catch (e) {
-            console.error('****************** User creation error *************');            
-            console.error(e);
-            console.error('****************** ');            
-         
-        }       
+        // console.log("user", JSON.stringify(user)); 
+        users.push(user);             
     }
+    await User.insertMany(users);
 }
 
 async function generateProducts() {
@@ -54,7 +49,7 @@ async function generateProducts() {
     const User = mongoose.model('User');
     const Item = mongoose.model('Item');
 
-    // const user = await mongoose.model('User').findOne();
+    const items = [];
     for (let i = 0; i < 100; i++) {
         const title = `product${i}`;
         const description = `product${i} desc`;
@@ -68,17 +63,10 @@ async function generateProducts() {
         };
         const item = new Item(payload);
         item.seller = await User.findOne({}).exec();
-        console.log('item', JSON.stringify(item));
-
-        try {
-            await item.save();
-        } catch(e) {
-            console.error('****************** Product creation error *************');            
-            console.error(e);
-            console.error('****************** ');            
-         
-        };
+        // console.log('item', JSON.stringify(item));
+        items.push(item);
     }
+    await Item.insertMany(items);
 }
 
 async function generateComments() {
@@ -86,23 +74,23 @@ async function generateComments() {
     const User = mongoose.model('User');
     const Item = mongoose.model('Item');
     const Comment = mongoose.model('Comment');
+    const comments = [];
     for (let i = 0; i < 100; i++) {
         const body = `test comment ${i}`;
         const comment = new Comment({ body });
         comment.item = await Item.findOne();
         comment.seller = await User.findOne({}).exec();
-        console.log('comment', JSON.stringify(comment));
-        try {
-            await comment.save();
-        } catch(e) {
-            console.error('****************** Comment creation error *************');            
-            console.error(e);
-            console.error('****************** ');            
-         
-        };
+        // console.log('comment', JSON.stringify(comment));
+        comments.push(comment);
     }
+    await Comment.insertMany(comments);
 }
 
-generateUsers();
-generateProducts();
-generateComments();
+async function run() {
+    await generateUsers();
+    await generateProducts();
+    await generateComments();
+    process.exit(0);
+}
+
+run();
