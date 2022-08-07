@@ -86,7 +86,7 @@ router.get("/", auth.optional, function(req, res, next) {
         return res.json({
           items: await Promise.all(
             items.map(async function(item) {
-              await updateMissingImage(item);
+              // await updateMissingImage(item);
               item.seller = await User.findById(item.seller);
               return item.toJSONFor(user);
             })
@@ -98,11 +98,11 @@ router.get("/", auth.optional, function(req, res, next) {
     .catch(next);
 });
 
-async function updateMissingImage(item) {
-  if (!item || !item._id || item.image) return;
-  item.image =  '/placeholder.png';
-  await Item.updateOne({ _id: item._id }, { image:  '/placeholder.png'});  
-}
+// async function updateMissingImage(item) {
+//   if (!item || !item._id || item.image) return;
+//   item.image =  '/placeholder.png';
+//   await Item.updateOne({ _id: item._id }, { image:  '/placeholder.png'});  
+// }
 
 router.get("/feed", auth.required, function(req, res, next) {
   var limit = 20;
