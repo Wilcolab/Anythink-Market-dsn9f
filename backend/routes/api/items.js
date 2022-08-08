@@ -75,7 +75,7 @@ router.get("/", auth.optional, function(req, res, next) {
         query._id = { $in: [] };
       }
 
-      if (title) {
+      if (req.query.title) {
         query.title = { $regex: '.*' + req.query.title + '.*' };
       }
 
