@@ -5,11 +5,11 @@ import agent from "../../agent";
 import { APPLY_QUERY_FILTER } from "../../constants/actionTypes";
 
 const mapDispatchToProps = (dispatch) => ({
-  onSearch: (page, payload) => dispatch({ type: APPLY_QUERY_FILTER, page, payload }),
+  onSearch: (page, payload) =>
+    dispatch({ type: APPLY_QUERY_FILTER, page, payload }),
 });
 
 const Banner = (props) => {
-
   const handleClick = (ev) => {
     const searchValue = ev.target.value;
     const page = props.currentPage;
@@ -18,7 +18,7 @@ const Banner = (props) => {
       props.onSearch(page, agent.Items.all(page));
     } else {
       props.onSearch(page, agent.Items.filter(page, `title=${searchValue}`));
-    }       
+    }
   };
 
   return (

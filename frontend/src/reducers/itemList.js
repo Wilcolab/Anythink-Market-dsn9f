@@ -53,7 +53,7 @@ const reducer = (state = {}, action) => {
         items: action.payload.items,
         itemsCount: action.payload.itemsCount,
         currentPage: action.page,
-      }; 
+      };
     case HOME_PAGE_LOADED:
       return {
         ...state,
