@@ -10,7 +10,8 @@
     "dev": "nodemon ./app.js",
     "seeds": "node ./scripts/seeds.js",
     "test": "newman run ./tests/api-tests.postman.json -e ./tests/env-api-tests.postman.json",
-    "stop": "lsof -ti :3000 | xargs kill"
+    "stop": "lsof -ti :3000 | xargs kill",
+    "heroku-postbuild": "cd frontend && yarn install && yarn start"
   },
   "dependencies": {
     "axios": "^0.25.0",
