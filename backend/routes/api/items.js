@@ -40,7 +40,6 @@ router.get("/", auth.optional, function(req, res, next) {
   const query = {};
   let limit = 100;
   let offset = 0;
-  let title;
 
   if (typeof req.query.limit !== "undefined") {
     limit = req.query.limit;
@@ -55,7 +54,7 @@ router.get("/", auth.optional, function(req, res, next) {
   }
 
   if (typeof req.query.title !== "undefined") {
-    title = req.query.title;
+    query.title = { $regex: '.*' + req.query.title + '.*' };
   }
 
   Promise.all([
