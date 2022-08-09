@@ -25,9 +25,9 @@ const Banner = (props) => {
       <div className="container p-4 text-center">
         <img src={logo} alt="banner" />
         <div>
-        <span id="get-part">A place to get </span>
+          <span id="get-part">A place to get </span>
           <input id="search-box" onChange={handleClick}></input>
-        <span> the cool stuff.</span>
+          <span> the cool stuff.</span>
         </div>
       </div>
     </div>
