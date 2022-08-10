@@ -45,7 +45,7 @@ const Banner = (props) => {
           <table align="center">
             <tr>
               <td>A place to </td>
-              <td onClick={toggle id="get-part"}>get </td>
+              <td onClick={toggle} id="get-part">get </td>
               <td>
                 <input
                   style={searchStyle}
