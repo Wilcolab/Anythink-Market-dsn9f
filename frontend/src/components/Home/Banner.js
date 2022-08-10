@@ -44,8 +44,15 @@ const Banner = (props) => {
         <div>
           <table align="center">
             <tr>
-              <td>A place to </td><td onClick={toggle}>get </td>
-              <td><input style={searchStyle} id="search-box" onChange={handleClick}></input></td>
+              <td>A place to </td>
+              <td onClick={toggle}>get </td>
+              <td>
+                <input
+                  style={searchStyle}
+                  id="search-box"
+                  onChange={handleClick}
+                ></input>
+              </td>
               <td> the cool stuff.</td>
             </tr>
           </table>
