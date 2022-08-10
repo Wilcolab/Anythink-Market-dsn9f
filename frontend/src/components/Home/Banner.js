@@ -10,14 +10,17 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const Banner = (props) => {
-  const handleClick = (ev) => {
+  const handleClick = async (ev) => {
     const searchValue = ev.target.value;
     const page = props.currentPage;
     ev.preventDefault();
     if (searchValue.length < 3) {
-      props.onSearch(page, agent.Items.all(page));
+      const data = await agent.Items.all(page);
+      props.onSearch(page, {data});
     } else {
-      props.onSearch(page, agent.Items.filter(page, `title=${searchValue}`));
+      const query = `title=${searchValue}`;
+      const data = await agent.Items.filter(page, query);
+      props.onSearch(page, {data, query: searchValue});
     }
   };
 

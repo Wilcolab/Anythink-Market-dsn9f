@@ -58,7 +58,7 @@ const TagFilterTab = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => ({  
   ...state.itemList,
   tags: state.home.tags,
   token: state.common.token,
@@ -92,6 +92,7 @@ const MainView = (props) => {
         loading={props.loading}
         itemsCount={props.itemsCount}
         currentPage={props.currentPage}
+        query={props.query}
       />
     </div>
   );
