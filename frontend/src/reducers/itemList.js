@@ -82,8 +82,6 @@ const reducer = (state = {}, action) => {
     case PROFILE_FAVORITES_PAGE_UNLOADED:
       return {};
     case APPLY_QUERY_FILTER:
-      console.log('state', JSON.stringify(state));
-      console.log('action', JSON.stringify(action));
       return {
         ...state,
         items: action.payload.data.items,
