@@ -58,7 +58,7 @@ const TagFilterTab = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({  
+const mapStateToProps = (state) => ({
   ...state.itemList,
   tags: state.home.tags,
   token: state.common.token,
