@@ -9,6 +9,15 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch({ type: APPLY_QUERY_FILTER, page, payload }),
 });
 
+function toggle() {
+  const x = document.getElementById("search-box");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
 const Banner = (props) => {
   const handleClick = async (ev) => {
     const searchValue = ev.target.value;
@@ -24,14 +33,22 @@ const Banner = (props) => {
     }
   };
 
+  const searchStyle = {
+    display: "none",
+  };
+
   return (
     <div className="banner text-white">
       <div className="container p-4 text-center">
         <img src={logo} alt="banner" />
         <div>
-          <span id="get-part">A place to get </span>
-          <input id="search-box" onChange={handleClick}></input>
-          <span> the cool stuff.</span>
+          <table align="center">
+            <tr>
+              <td>A place to </td><td onClick={toggle}>get </td>
+              <td><input style={searchStyle} id="search-box" onChange={handleClick}></input></td>
+              <td> the cool stuff.</td>
+            </tr>
+          </table>
         </div>
       </div>
     </div>
