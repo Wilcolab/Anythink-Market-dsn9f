@@ -16,11 +16,11 @@ const Banner = (props) => {
     ev.preventDefault();
     if (searchValue.length < 3) {
       const data = await agent.Items.all(page);
-      props.onSearch(page, {data});
+      props.onSearch(page, { data });
     } else {
       const query = `title=${searchValue}`;
       const data = await agent.Items.filter(page, query);
-      props.onSearch(page, {data, query: searchValue});
+      props.onSearch(page, { data, query: searchValue });
     }
   };
 
