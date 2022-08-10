@@ -92,6 +92,7 @@ const MainView = (props) => {
         loading={props.loading}
         itemsCount={props.itemsCount}
         currentPage={props.currentPage}
+        query={props.query}
       />
     </div>
   );
