@@ -66,9 +66,9 @@ const Header = (props) => {
           <img alt="logo" src={logo} />
         </Link>
 
-        <LoggedOutView currentUser={this.props.currentUser} />
+        <LoggedOutView currentUser={props.currentUser} />
 
-        <LoggedInView currentUser={this.props.currentUser} />
+        <LoggedInView currentUser={props.currentUser} />
       </nav>
     );
 }
