@@ -12,8 +12,8 @@ exports.config = {
   app_name: 'ANYTHINK_MARKET',
   /**
    * Your New Relic license key.
+   * license_key: process.env.NEW_RELIC_LICENSE_KEY,
    */
-  license_key: process.env.NEW_RELIC_LICENSE_KEY,
   logging: {
     /**
      * Level at which to log. 'trace' is most useful to New Relic when diagnosing
