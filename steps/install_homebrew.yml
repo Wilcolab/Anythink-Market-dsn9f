@@ -1,0 +1,44 @@
+id: install_homebrew
+hints:
+- "Go to: https://brew.sh/ and follow the instructions"
+startFlow:
+  do:
+  - actionId: bot_message
+    params:
+      person: keen
+      messages:
+      - text: "Welcome to Hippo!"
+        delay: 2000
+      - text: "We see that you are new here, but don't worry - we're here to help get you started!"
+        delay: 3500
+      - text: "Let's install some stuff, we'll start with homebrew - please install it and when you're done open a terminal and run `brew -v` and paste the output here"
+        delay: 3500
+trigger:
+  type: user_message
+  params:
+    person: keen
+  flowNode:
+    if:
+      conditions:
+      - conditionId: text_contains_strings
+        params:
+          text: "${userMessageText}"
+          strings: 
+          - "Homebrew"
+      then:
+        do:
+        - actionId: bot_message
+          params:
+            person: keen
+            messages:
+            - text: "Good for you! we're off to a good start - let's continue!"
+              delay: 1300
+        - actionId: finish_step
+      else:
+        do:
+        - actionId: bot_message
+          params:
+            person: keen
+            messages:
+            - text: "I didn't get that... if you run into issues - please ask team members for advice!"
+              delay: 2500

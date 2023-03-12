@@ -1,0 +1,46 @@
+id: install_postgres
+hints:
+- "Follow the instructions: https://myhippo.atlassian.net/wiki/spaces/HD/pages/802390901/Setting+Up+A+System+For+Safari+Development"
+startFlow:
+  do:
+  - actionId: bot_message
+    params:
+      person: keen
+      messages:
+      - text: "Hola como estas? bien? oh, we're not in Mexico? sorry my bad. let me recalibrate myself"
+        delay: 2000
+      - text: "............."
+        delay: 2000
+      - text: "............."
+        delay: 2000
+      - text: "Do you like databases? how about we install postgres now? when you're done open a terminal and run `postgres --help` and paste the first line of the output here"
+        delay: 3500
+trigger:
+  type: user_message
+  params:
+    person: keen
+  flowNode:
+    if:
+      conditions:
+      - conditionId: text_contains_strings
+        params:
+          text: "${userMessageText}"
+          strings: 
+          - "postgres is the PostgreSQL server"
+      then:
+        do:
+        - actionId: bot_message
+          params:
+            person: keen
+            messages:
+            - text: You did it!
+              delay: 1300
+        - actionId: finish_step
+      else:
+        do:
+        - actionId: bot_message
+          params:
+            person: keen
+            messages:
+            - text: I'm not that sofisticated sorry for that... if you run into issues - please ask team members for advice!
+              delay: 2500

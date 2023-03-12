@@ -1,0 +1,42 @@
+id: install_nvm
+hints:
+- "You can use: https://tecadmin.net/install-nvm-macos-with-homebrew/"
+startFlow:
+  do:
+  - actionId: bot_message
+    params:
+      person: keen
+      messages:
+      - text: "Hey Bruce Lee, I see you're on a streak :) ready for another one?"
+        delay: 2000
+      - text: "Now let's install nvm - when you're done open a terminal and run `nvm -h` and paste the first line of the output here"
+        delay: 3500
+trigger:
+  type: user_message
+  params:
+    person: keen
+  flowNode:
+    if:
+      conditions:
+      - conditionId: text_contains_strings
+        params:
+          text: "${userMessageText}"
+          strings: 
+          - "Node Version Manager"
+      then:
+        do:
+        - actionId: bot_message
+          params:
+            person: keen
+            messages:
+            - text: now thanks to you we'll be able to run node, awesome!
+              delay: 3000
+        - actionId: finish_step
+      else:
+        do:
+        - actionId: bot_message
+          params:
+            person: keen
+            messages:
+            - text: I'm just a simple bot sorry for that... if you run into issues - please ask team members for advice!
+              delay: 2500

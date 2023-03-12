@@ -1,0 +1,42 @@
+id: install_typescript
+hints:
+- "Run: `sudo npm install -g typescript`"
+startFlow:
+  do:
+  - actionId: bot_message
+    params:
+      person: keen
+      messages:
+      - text: "Very nice indeed!"
+        delay: 2000
+      - text: "Now it's time to install typescript - when you're done open a terminal and run `tsc -h` and paste the first line of the output here"
+        delay: 3500
+trigger:
+  type: user_message
+  params:
+    person: keen
+  flowNode:
+    if:
+      conditions:
+      - conditionId: text_contains_strings
+        params:
+          text: "${userMessageText}"
+          strings: 
+          - "tsc: The TypeScript Compiler - Version"
+      then:
+        do:
+        - actionId: bot_message
+          params:
+            person: keen
+            messages:
+            - text: "A new level of awesomeness has been unlocked - way to go!"
+              delay: 1300
+        - actionId: finish_step
+      else:
+        do:
+        - actionId: bot_message
+          params:
+            person: keen
+            messages:
+            - text: I didn't get that... if you run into issues - please ask team members for advice!
+              delay: 2500

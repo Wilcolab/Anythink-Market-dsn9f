@@ -1,0 +1,42 @@
+id: install_yarn
+hints:
+- "Run: `npm install --global yarn`"
+startFlow:
+  do:
+  - actionId: bot_message
+    params:
+      person: keen
+      messages:
+      - text: "Very nice indeed!"
+        delay: 2000
+      - text: "Please install yarn - when you're done open a terminal and run `yarn -h` and paste the first line of the output here"
+        delay: 3500
+trigger:
+  type: user_message
+  params:
+    person: keen  
+  flowNode:
+    if:
+      conditions:
+      - conditionId: text_contains_strings
+        params:
+          text: "${userMessageText}"
+          strings: 
+          - "Usage: yarn [command] [flags]"
+      then:
+        do:
+        - actionId: bot_message
+          params:
+            person: keen
+            messages:
+            - text: you're one of a kind, rumor has it that someone @ Hippo tried to do `yarn install awesome` and we got... **you**!
+              delay: 1300
+        - actionId: finish_step
+      else:
+        do:
+        - actionId: bot_message
+          params:
+            person: keen
+            messages:
+            - text: I didn't get that sorry... please try again and if you run into issues - please ask team members for advice!
+              delay: 2500

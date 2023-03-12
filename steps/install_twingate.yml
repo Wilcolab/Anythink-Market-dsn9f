@@ -1,0 +1,42 @@
+id: install_twingate
+hints:
+- "Follow the instructions here: https://myhippo.atlassian.net/wiki/spaces/HD/pages/2059010354/Twingate+VPN"
+startFlow:
+  do:
+  - actionId: bot_message
+    params:
+      person: keen
+      messages:
+      - text: "You're doing great, keep it up!"
+        delay: 2000
+      - text: "Please install twingate, all you need to know is in confluence - please type 'done' when you're finished"
+        delay: 3500
+trigger:
+  type: user_message
+  params:
+    person: keen
+  flowNode:
+    if:
+      conditions:
+      - conditionId: text_contains_strings
+        params:
+          text: "${userMessageText}"
+          strings: 
+          - "done"
+      then:
+        do:
+        - actionId: bot_message
+          params:
+            person: keen
+            messages:
+            - text: "greate job bud! I really feel the urge to deducate the following song to you: https://www.youtube.com/watch?v=xZweLtjNxZY&ab_channel=Andr%C3%A9Rieu"
+              delay: 1300
+        - actionId: finish_step
+      else:
+        do:
+        - actionId: bot_message
+          params:
+            person: keen
+            messages:
+            - text: I didn't get that... if you run into issues - please ask team members for advice!
+              delay: 2500

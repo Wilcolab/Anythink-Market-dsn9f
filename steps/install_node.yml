@@ -1,0 +1,42 @@
+id: install_node
+hints:
+- "use nvm to install node"
+startFlow:
+  do:
+  - actionId: bot_message
+    params:
+      person: keen
+      messages:
+      - text: "Way to go!"
+        delay: 2000      
+      - text: "Let's use nvm to install the following node versions: 12.18.3 and 14.15 and 16.13.0 - when you're done open a terminal and run `node` and paste the first line of the output here"
+        delay: 3500
+trigger:
+  type: user_message
+  params:
+    person: keen
+  flowNode:
+    if:
+      conditions:
+      - conditionId: text_contains_strings
+        params:
+          text: "${userMessageText}"
+          strings: 
+          - "Welcome to Node.js v"
+      then:
+        do:
+        - actionId: bot_message
+          params:
+            person: keen
+            messages:
+            - text: WOW that was quick...
+              delay: 1300
+        - actionId: finish_step
+      else:
+        do:
+        - actionId: bot_message
+          params:
+            person: keen
+            messages:
+            - text: I didn't get that sorry for that... please try again and if you run into issues - please ask team members for advice!
+              delay: 2500

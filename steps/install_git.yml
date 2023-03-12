@@ -1,0 +1,42 @@
+id: install_git
+hints:
+- "Google 'git scm download'"
+startFlow:
+  do:
+  - actionId: bot_message
+    params:
+      person: keen
+      messages:
+      - text: "Hey ninja how are ya? ready for another one?"
+        delay: 2000
+      - text: "Now let's install git - please install it and when you're done open a terminal and run `git --version` and paste the output here"
+        delay: 3500
+trigger:
+  type: user_message
+  params:
+    person: keen
+  flowNode:
+    if:
+      conditions:
+      - conditionId: text_contains_strings
+        params:
+          text: "${userMessageText}"
+          strings: 
+          - "git version"
+      then:
+        do:
+        - actionId: bot_message
+          params:
+            person: keen
+            messages:
+            - text: you're killing it! Now please login to github and make sure that you were added to Hippo organization - if not please ask your team leader to help you with that!
+              delay: 1300
+        - actionId: finish_step
+      else:
+        do:
+        - actionId: bot_message
+          params:
+            person: keen
+            messages:
+            - text: I didn't get that... if you run into issues - please ask team members for advice!
+              delay: 2500

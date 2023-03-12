@@ -1,0 +1,42 @@
+id: install_docker
+hints:
+- "Go to https://docs.docker.com/docker-for-mac/install/"
+startFlow:
+  do:
+  - actionId: bot_message
+    params:
+      person: keen
+      messages:
+      - text: "Hey 10x developer, ain't resting are'ya? ready for another one?"
+        delay: 2000
+      - text: "One of the most basic tools we use is docker - please install it and when you're done run `docker -v` and paste the output here"
+        delay: 3500
+trigger:
+  type: user_message
+  params:
+    person: keen
+  flowNode:
+    if:
+      conditions:
+      - conditionId: text_contains_strings
+        params:
+          text: "${userMessageText}"
+          strings: 
+          - "Docker version"
+      then:
+        do:
+        - actionId: bot_message
+          params:
+            person: keen
+            messages:
+            - text: Good for you! another one bites the dust :)
+              delay: 1300
+        - actionId: finish_step
+      else:
+        do:
+        - actionId: bot_message
+          params:
+            person: keen
+            messages:
+            - text: I didn't get that... if you run into issues - please ask team members for advice!
+              delay: 2500
