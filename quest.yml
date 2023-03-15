@@ -1,5 +1,7 @@
-id: "hippo-onboarding"
+id: hippo-onboarding-2
 title: Hippo setup
+subtitle: Hippo Onboarding
+repository: https://github.com/alfasin/hippo-onboarding
 description: "In order to preper our machine to run Hippo code there are some dependencies we need to install first"
 summary: "We'll install a few dependencies such as: Homebrew, git, docker, nvm, node, yarn, typescript, and postgres"
 level: beginner
@@ -18,4 +20,3 @@ skills:
 - general
 - setup
 slogan: I got the need, the need for speed!
-shouldResetRepo: false 
