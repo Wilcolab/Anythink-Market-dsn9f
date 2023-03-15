@@ -19,4 +19,5 @@ duration: 1.5
 skills:
 - general
 - setup
+shouldResetRepo: false
 slogan: I got the need, the need for speed!
